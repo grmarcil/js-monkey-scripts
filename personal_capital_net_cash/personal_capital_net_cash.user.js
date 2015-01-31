@@ -48,10 +48,10 @@ function pageReady() {
   // Personal Capital loads accounts dynamically on page load
   // Kind of a hack, but it's the best quick solution I could find
   // without digging too deep in their js
-  window.PCAPCashRetryCounter += 1;
-  if(typeof window.PCAP === 'undefined' || typeof window.PCAP.refreshingAccounts === "undefined" || !($.isEmptyObject(window.PCAP.refreshingAccounts))) {
+  if(typeof window.PCAP === 'undefined' || typeof window.PCAP.refreshingAccounts === "undefined") {
     // don't allow infinite retries
     if(window.PCAPCashRetryCounter < 5) {
+      window.PCAPCashRetryCounter += 1;
       setTimeout(function() {pageReady();}, 2000);
     }
   } else {
