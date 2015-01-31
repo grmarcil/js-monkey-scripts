@@ -50,9 +50,9 @@ function pageReady() {
   // without digging too deep in their js
   if(typeof window.PCAP === 'undefined' || typeof window.PCAP.refreshingAccounts === "undefined") {
     // don't allow infinite retries
-    if(window.PCAPCashRetryCounter < 5) {
+    if(window.PCAPCashRetryCounter < 20) {
       window.PCAPCashRetryCounter += 1;
-      setTimeout(function() {pageReady();}, 2000);
+      setTimeout(function() {pageReady();}, 100);
     }
   } else {
     addNodes();
@@ -62,7 +62,7 @@ function pageReady() {
 function main() {
   window.PCAPCashRetryCounter = 0;
   if(typeof $ === 'undefined') {
-    setTimeout(function() {main();}, 500);
+    setTimeout(function() {main();}, 100);
   } else {
     pageReady();
   }
